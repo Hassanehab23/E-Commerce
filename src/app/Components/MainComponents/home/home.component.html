@@ -35,9 +35,12 @@
                                     <span class="block text-lg font-semibold">
                                         <span class="font-bold text-red-500">EGP</span> {{ Product?.price }}
                                     </span>
+                                 @if (isLogin) 
+                                 {
                                     <button (click)="addproducttocart(Product?._id)" class="bg-green-600 rounded px-3 py-1 text-black hover:bg-green-900">
                                         <span class="font-bold text-xl">+</span>
-                                    </button>
+                                    </button>   
+                                 }
                                 </div>
     
                                 <div class="flex items-center justify-between py-2">

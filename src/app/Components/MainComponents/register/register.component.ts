@@ -11,6 +11,9 @@ import { AuthService } from '../../../Services/Auth/auth.service';
 export class RegisterComponent {
   erroemessage!:string;
   isLoading!:boolean;
+  password: string = '';
+  showpattern = false;
+
 
 
   constructor(private _AuthService:AuthService,private _Router:Router){
@@ -22,12 +25,19 @@ export class RegisterComponent {
 
     name:new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     email:new FormControl(null,[Validators.required,Validators.email]),
-    password:new FormControl(null,[Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{8}$/)]),
+    password:new FormControl(null,[Validators.required,Validators.pattern(/^[A-Z][0-9]{8}$/)]),
     rePassword:new FormControl(null,[Validators.required]),
     phone:new FormControl(null,[Validators.required,Validators.pattern(/^01[0125][0-9]{8}$/)])
   },this.RePasswordValid)
 
-
+  checkPassword() {
+    const passwordPattern = /^[A-Z]\d{8}$/;
+    
+    if (passwordPattern.test(this.password)) {
+      this.showpattern = false; // إخفاء التلميح عند تحقق الشرط
+    }
+  }
+  
   RegisterNow(){
     this.isLoading=true;
     if(this.RegisterForm.valid){

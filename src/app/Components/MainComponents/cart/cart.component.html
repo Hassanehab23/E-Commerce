@@ -1,0 +1,46 @@
+<section>
+
+   @if (data) {
+    <div class="w-11/12 mx-auto mt-5 bg-gray-100 p-5 rounded-2xl dark:bg-[#1F2937]">
+    
+       <div class="flex flex-wrap items-center justify-between">
+
+        <div class="my-4 py-4">
+            <h1 class="text-xl font-bold my-3">Show Cart</h1>
+            <p class="text-lg text-green-400 font-semibold">Total Price: <span class="text-black">{{data.totalCartPrice}} <span class="text-red-600">EGP</span> </span></p>
+        </div>
+        <div>
+            <button (click)="clear()" class="bg-green-400 rounded-2xl px-4 py-2 text-white block 1/12 hover:bg-green-900">Clear </button>
+            </div>
+
+       </div>
+       
+      @for (p of data.products; track $index) {
+        <div class="flex flex-wrap items-center border-b-2 justify-between border-white py-2">
+            <div class="md:w-1/12 productimg"><img class="rounded-lg" [src]="p.product.imageCover" alt=""></div>
+
+            <div class="md:w-10/12 productdetails px-4">
+            <h2 class="text-lg text-green-600 font-semibold my-3">{{p.product.title}}</h2>
+            <p class="text-black font-semibold">{{p.price}} <span class="text-red-600">EGP</span></p>
+            <span (click)="removeProduct(p.product._id)" class="my-3 cursor-pointer">
+                <i class="text-red-600 hover:text-red-900 dark:text-gray-600 dark:hover:text-gray-950  fa fa-trash"></i>
+                <span class="text-gray-400 dark:text-gray-950 font-semibold p-1">Remove</span>
+            </span>   
+             </div>
+
+            <div class="counter md:w-1/12 p-2">
+                <button (click)="Add(p.product._id,p.count=p.count+1)" class="p-1 rounded bg-green-400 text-white">+</button>
+                <span class="text-sm font-semibold">{{p.count}}</span>
+                <button (click)="Remove(p.product._id,p.count=p.count-1)"  class="p-1 rounded bg-red-400 text-white">-</button>
+            </div>
+
+        </div>
+
+      }
+
+
+    </div>
+   }
+
+    
+</section>

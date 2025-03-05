@@ -1,0 +1,24 @@
+<div class="w-11/12 mx-auto">
+    <div class="flex flex-col md:flex-row">
+        <!-- Slider Section -->
+        <div class="w-full md:w-3/4">
+            <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide>
+                    <img src="assets/images/slider-image-1.jpeg" class="w-full h-[300px] md:h-[400px] object-cover rounded-md" alt="">
+                </ng-template>  
+                <ng-template carouselSlide>
+                    <img src="assets/images/slider-image-2.jpeg" class="w-full h-[300px] md:h-[400px] object-cover rounded-md" alt="">
+                </ng-template>  
+                <ng-template carouselSlide>
+                    <img src="assets/images/slider-image-3.jpeg" class="w-full h-[300px] md:h-[400px] object-cover rounded-md" alt="">
+                </ng-template>  
+            </owl-carousel-o>
+        </div>
+
+        <!-- Images Section -->
+        <div class="w-full md:w-1/4 flex md:flex-col">
+            <img src="assets/images/slider-image-2.jpeg" class="w-1/2 h-[150px] md:w-full md:h-[200px] rounded-md object-cover" alt="">
+            <img src="assets/images/slider-image-3.jpeg" class="w-1/2 h-[150px] md:w-full  md:h-[200px] rounded-md object-cover" alt="">
+        </div>
+    </div>
+</div>

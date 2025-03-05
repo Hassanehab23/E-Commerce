@@ -1,0 +1,43 @@
+@if (data) {
+
+    <section>
+        <div class="my-5 p-3 w-11/12 mx-auto bg-gray-200 rounded-md dark:bg-[#1F2937]">
+
+        
+           <div class="flex flex-wrap items-center justify-between">
+    
+            <div class="my-4 px-5 py-4">
+                <h1 class="text-xl font-bold my-3">My Wish List</h1>
+            </div>
+    
+           </div>
+           
+          @for (p of data; track $index) {
+            
+            <div class="flex flex-wrap items-center border-b-2 justify-between border-white py-2 dark:bg-[#1F2937]">
+                <div  [routerLink]="['/ProductDetails', p?._id]" class="cursor-pointer md:w-1/12 productimg"><img class="rounded-lg" [src]="p?.imageCover" [alt]="p?.category?.name"></div>
+    
+                <div class="md:w-9/12 productdetails px-4">
+                <h2 class="text-lg text-green-600 font-semibold my-3">{{p?.category?.name}}</h2>
+                <p class="text-black font-semibold">{{p?.price}} <span class="text-red-600">EGP</span></p>
+                    <span (click)="removeProductFromWishlist(p?._id)" class="my-3 cursor-pointer">
+                        <i class="text-red-600 hover:text-red-900 dark:text-gray-600 dark:hover:text-gray-950  fa fa-trash"></i>
+                        <span class="text-gray-400 dark:text-gray-950  font-semibold p-1">Remove</span>
+                </span>   
+                 </div>
+    
+                <div class="md:w-2/12 p-2">
+                    <button (click)="addproducttocart(p?._id)" class="px-4 py-2 border-2 border-black rounded-md bg-white text-green-400 hover:bg-green-400 hover:text-white">Add To Cart</button>
+                </div> 
+    
+            </div>
+    
+          }
+    
+    
+        </div>
+   
+        
+    </section>
+
+}

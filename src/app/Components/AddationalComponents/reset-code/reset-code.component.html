@@ -1,0 +1,50 @@
+<section class="w-10/12 mx-auto my-6">
+
+
+   
+    <header>
+        <h1 class="text-2xl font-bolder mb-3">Reset Code</h1>
+    
+    </header>
+
+    
+    <form [formGroup]="ResetCodeForm" (ngSubmit)="ResetCodeSubmit()"  class="mt-4 pt-4">
+        @if(errmsg){
+            <div class="alert">
+                <p>
+                    {{errmsg}}
+                </p>
+            </div>
+        }
+    
+    
+        <div class="resetCode mt-3">
+            <label for="resetCode">Code:</label>
+            <input formControlName="resetCode" id="resetCode" type="text" class="Form-control">
+            @if(ResetCodeForm.get("resetCode")?.errors && ResetCodeForm.get("resetCode")?.touched){
+                <div class="alert">
+                    @if(ResetCodeForm.get("resetCode")?.errors?.["required"]){
+                        <p>Code Is Required</p>
+                    }
+                    @else if(ResetCodeForm.get("resetCode")?.errors?.["pattern"]){
+                        <p>Code Is not Vailid</p>
+                    }
+                </div>
+              
+            }
+        </div>
+        
+    
+    
+            <div class="Submit mt-3">
+                <button  [disabled]="ResetCodeForm.invalid" class="bg-green-400 rounded-2xl px-2 py-2 text-white block 1/12 hover:bg-green-900">
+                    <a>Submit</a>
+                 
+                    @if(isLoading){
+                        <span><i class="fa fa-spinner fa-spin"></i></span>
+                      }
+    
+      </button>   
+         </div>    
+       </form>    
+    </section>

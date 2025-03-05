@@ -1,0 +1,119 @@
+<section>
+    <div class="w-11/12 mx-auto my-6 p-5 rounded-lg dark:bg-[#1F2937]">
+
+
+
+   
+    <header>
+        <h1 class="text-2xl font-bolder mb-3">Register Now:</h1>
+    
+    </header>
+@if(erroemessage){
+    <div class="alert">
+        <h4>{{erroemessage}}</h4>
+    </div>
+
+}
+
+  
+    <form [formGroup]="RegisterForm" class="mt-4 pt-4" (ngSubmit)="RegisterNow()">
+        <div class="name mt-3">
+            <label for="name">Name:</label>
+            <input formControlName="name" id="name" type="text" class="Form-control">
+            @if(RegisterForm.get("name")?.errors && RegisterForm.get("name")?.touched){
+                <div class="alert">
+                    @if(RegisterForm.get("name")?.errors?.["required"]){
+                        <p>Name Is Required</p>
+                    }
+                    @else if(RegisterForm.get("name")?.errors?.["minlength"]){
+                        <p>Name Min Length : 3</p>
+                    }
+                    @else if(RegisterForm.get("name")?.errors?.["maxlength"]){
+                        <p>Name Max Length : 10</p>
+                    }
+                </div>
+              
+            }
+        </div>
+    
+                <div class="email mt-3">
+                    <label for="email">Email:</label>
+                    <input formControlName="email" id="email" type="email" class="Form-control">
+                    @if(RegisterForm.get("email")?.errors && RegisterForm.get("email")?.touched){
+                        <div class="alert">
+                            @if(RegisterForm.get("email")?.errors?.["required"]){
+                                <p>Email Is Required</p>
+                            }
+                            @else if(RegisterForm.get("email")?.errors?.["email"]){
+                                <p>Email Is not Vailid : 3</p>
+                            }
+                        </div>
+                      
+                    }
+                </div>
+    
+                <div class="password mt-3">
+                    <label for="password">Password:</label>
+                    <input formControlName="password" id="password" type="text" class="Form-control">
+                    @if(RegisterForm.get("password")?.errors && RegisterForm.get("password")?.touched){
+                        <div class="alert">
+                            @if(RegisterForm.get("password")?.errors?.["required"]){
+                                <p>password Is Required</p>
+                            }
+                            @else if(RegisterForm.get("password")?.errors?.["pattern"]){
+                                <p>password is Not Valid</p>
+                            }
+                     
+                        </div>
+                      
+                    }
+                </div>
+    
+    
+                <div class="rePassword mt-3">
+                    <label for="rePassword">Re-Password:</label>
+                    <input formControlName="rePassword" id="rePassword" type="text" class="Form-control">
+                    @if(RegisterForm.get("rePassword")?.errors && RegisterForm.get("rePassword")?.touched){
+                        <div class="alert">
+                            @if(RegisterForm.get("rePassword")?.errors?.["required"]){
+                                <p>rePassword Is Required</p>
+                            }
+                            @else if(RegisterForm.get("rePassword")?.errors?.["missmatch"]){
+                                <p>rePassword is Not Match Password</p>
+                            }
+                        </div>
+                      
+                    }
+                </div>
+    
+                <div class="phone mt-3">
+                    <label for="phone">Phone:</label>
+                    <input formControlName="phone" id="phone" type="tel" class="Form-control">
+                    @if(RegisterForm.get("phone")?.errors && RegisterForm.get("phone")?.touched){
+                        <div class="alert">
+                            @if(RegisterForm.get("phone")?.errors?.["required"]){
+                                <p>Phone Is Required</p>
+                            }
+                            @else if(RegisterForm.get("phone")?.errors?.["pattern"]){
+                                <p>Phone is Not Valid</p>
+                            }
+                           
+                        </div>
+                      
+                    }
+                </div>
+
+             <div class="Submit mt-3">
+            <button [disabled]="RegisterForm.invalid" class="bg-green-400 rounded-2xl px-2 py-2 text-white block 1/12 hover:bg-green-900">Register Now
+                          @if(isLoading){
+                            <span><i class="fa fa-spinner fa-spin"></i></span>
+
+                          }
+
+
+            </button>
+        </div>
+       </form>
+    </div>
+
+    </section>

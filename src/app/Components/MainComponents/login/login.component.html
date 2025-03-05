@@ -1,0 +1,76 @@
+<section>
+
+
+    <div class="w-11/12 mx-auto my-6 p-5 rounded-lg dark:bg-[#1F2937]">
+        <header>
+        <h1 class="text-2xl font-bolder mb-3">Login Now:</h1>
+    
+    </header>
+    @if(MessageError){
+    
+        <div class="alert">
+            <h4>{{MessageError}}</h4>
+      
+        </div>
+    
+    }
+    
+    <form [formGroup]="LoginForm" (ngSubmit)="LoginNow()" class="mt-4 pt-4">
+    
+        <div class="email mt-3">
+            <label for="email">Email:</label>
+            <input formControlName="email" id="Email" type="email" class="Form-control">
+            @if(LoginForm.get("email")?.errors && LoginForm.get("email")?.touched){
+                <div class="alert">
+                    @if(LoginForm.get("email")?.errors?.["required"]){
+                        <p>Email Is Required</p>
+                    }
+                    @else if(LoginForm.get("email")?.errors?.["email"]){
+                        <p>Email Is not Vailid</p>
+                    }
+                </div>
+              
+            }
+        </div>
+    
+        <div class="password mt-3">
+            <label for="password">Password:</label>
+            <input formControlName="password" id="password" type="text" class="Form-control">
+            @if(LoginForm.get("password")?.errors && LoginForm.get("password")?.touched){
+                <div class="alert">
+                    @if(LoginForm.get("password")?.errors?.["required"]){
+                        <p>password Is Required</p>
+                    }
+                    @else if(LoginForm.get("password")?.errors?.["pattern"]){
+                        <p>password is Not Valid</p>
+                    }
+             
+                </div>
+              
+            }
+        </div>
+    
+    
+        <p class="dark:text-gray-200  dark:hover:dark:text-gray-500 text-center font-bold text-sm p-2 m-2 cursor-pointer text-blue-900 hover:text-blue-600 "> <a routerLink="/ForgetPassword">You Forget Your Password..?</a></p>
+    
+    
+    
+            <div class="Submit mt-3">
+                <button [disabled]="LoginForm.invalid" class="bg-green-400 rounded-2xl px-2 py-2 text-white block 1/12 hover:bg-green-900">Login Now
+                    @if(isLoading){
+                      <span><i class="fa fa-spinner fa-spin"></i></span>
+                    }
+    
+    
+      </button>        </div>
+    
+    
+    
+    
+       </form>
+   </div>
+
+
+  
+
+</section>

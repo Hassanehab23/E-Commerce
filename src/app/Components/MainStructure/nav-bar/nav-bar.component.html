@@ -1,0 +1,105 @@
+
+
+<nav class="sticky bg-gray-200 border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen flex flex-wrap items-center justify-around mx-auto p-4">
+
+
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        <a routerLink="Home" class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <i class="fa-solid fa-cart-shopping nav-icon text-green-600 text-2xl"></i> fresh Cart
+        </a>
+      </span>
+  
+      <button (click)="toggleNavbar()" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </button>
+  
+      <div [ngClass]="{'hidden': !isNavbarOpen}" class="w-full md:flex md:w-3/4">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row rtl:space-x-reverse-4 md:space-x-1 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          
+          <li>
+            <a routerLink="Home" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-900 dark:text-white" (click)="closeNavbar()">Home</a>
+          </li>
+  
+       @if (isLogin) {
+        <li>
+          <a routerLink="WishList" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-900 dark:text-white" (click)="closeNavbar()">WishList</a>
+        </li>
+        <li>
+          <a routerLink="Cart" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-900 dark:text-white" (click)="closeNavbar()">Cart</a>
+        </li>
+       }
+  
+          <li>
+            <a routerLink="Products" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-900 dark:text-white" (click)="closeNavbar()">Products</a>
+          </li>
+          <li>
+            <a routerLink="Categories" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-900 dark:text-white" (click)="closeNavbar()">Categories</a>
+          </li>
+          <li>
+            <a routerLink="Brands" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-900 dark:text-white" (click)="closeNavbar()">Brands</a>
+          </li>
+  
+          <li class="flex gap-3 items-center px-10">
+            <a class="cursor-pointer"><i class="fa-brands fa-facebook text-black text-xl dark:text-white"></i></a>
+            <a class="cursor-pointer"><i class="fa-brands fa-youtube text-black text-xl dark:text-white"></i></a>
+            <a class="cursor-pointer"><i class="fa-brands fa-instagram text-black text-xl dark:text-white"></i></a>
+            <a class="cursor-pointer"><i class="fa-brands fa-github text-black text-xl dark:text-white"></i></a>
+            <a class="cursor-pointer"><i class="fa-brands fa-linkedin text-black text-xl dark:text-white"></i></a>
+          </li>
+
+          @if (isLogin) {
+    
+            <li>
+              <button routerLink="Cart" type="button" class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-green-400 rounded-lg hover:bg-green-600">
+                <i class="fa-solid fa-cart-shopping"></i>
+              <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-gray-400 border-2 dark:bg-gray-700 border-white rounded-full -top-2 -end-2 dark:border-gray-900">{{_CartService.CartNum.getValue()}}</div>
+            </button>
+          
+            </li>
+            
+          }
+  
+          @if (!isLogin) {
+            <li>
+              <a routerLink="Register" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-700 dark:text-white" (click)="closeNavbar()">Register</a>
+            </li>
+            <li>
+              <a routerLink="Login" routerLinkActive="bg-green-600 text-white rounded-lg" class="block py-2 px-3 text-gray-700 dark:text-white" (click)="closeNavbar()">Login</a>
+            </li>
+          }
+  
+        @else if (isLogin) {
+          <li>
+            <a (click)="_AuthService.signOut(); closeNavbar()" class="cursor-pointer block py-2 px-3 text-gray-700 dark:text-white">Logout</a>
+          </li>
+
+          
+        }
+ 
+        </ul>
+      </div>
+
+
+
+      <span class="cursor-pointer" (click)="toggleDarkMode()">
+  @if (isDarkMode) {<i class="fas fa-sun text-lg"></i>}
+  @if (!isDarkMode) {<i class="fas fa-moon text-lg"></i>}
+  </span>
+
+  
+
+  
+
+  
+
+
+  
+    </div>
+  </nav>
+
+
+  

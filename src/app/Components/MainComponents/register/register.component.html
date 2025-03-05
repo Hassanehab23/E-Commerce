@@ -45,7 +45,7 @@
                                 <p>Email Is Required</p>
                             }
                             @else if(RegisterForm.get("email")?.errors?.["email"]){
-                                <p>Email Is not Vailid : 3</p>
+                                <p>Email Is not Vailid </p>
                             }
                         </div>
                       
@@ -54,7 +54,38 @@
     
                 <div class="password mt-3">
                     <label for="password">Password:</label>
-                    <input formControlName="password" id="password" type="text" class="Form-control">
+                
+                
+                
+                   
+
+
+                    <input type="password" 
+                    [(ngModel)]="password" 
+                    (blur)="showpattern = false" 
+                    (focus)="showpattern = true"
+                    (input)="checkPassword()" 
+                    class="Form-control" 
+                    formControlName="password" id="password" type="text">
+
+
+
+
+                    @if (showpattern) {
+                                        
+                    <div class="bg-red-100 dark:bg-gray-700 text-red-700 dark:text-gray-300 
+                    border-l-4 border-red-500 dark:border-gray-500 p-4 rounded-lg shadow-lg mt-2">
+            <p class="font-semibold text-sm">Your password must start with a capital letter followed by 8 digits.</p>
+            <p class="text-sm"><span class="font-bold">Example:</span> A12345678</p>
+        </div>
+                    }
+                         
+                
+                
+                
+
+
+                    
                     @if(RegisterForm.get("password")?.errors && RegisterForm.get("password")?.touched){
                         <div class="alert">
                             @if(RegisterForm.get("password")?.errors?.["required"]){
